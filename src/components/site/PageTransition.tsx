@@ -3,13 +3,19 @@ import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 /**
- * Wraps page content with a fade/slide transition on route change.
- * Also scrolls to top whenever the path changes.
+ * Barba.js-inspired page transition for React Router.
+ *
+ * Sequence on route change:
+ *   1. Overlay panel sweeps in from the bottom (cover)   — 500ms
+ *   2. Route content swaps behind the panel, scroll resets
+ *   3. Overlay panel sweeps out to the top (reveal)      — 500ms
+ *   4. Incoming page content fades + slides in
  */
 export const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [displayed, setDisplayed] = useState(children);
-  const [stage, setStage] = useState<"in" | "out">("in");
+  const [phase, setPhase] = useState<"idle" | "cover" | "reveal">("idle");
+  const [contentVisible, setContentVisible] = useState(true);
   const prevPath = useRef(location.pathname);
 
   useEffect(() => {
@@ -17,27 +23,89 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
       setDisplayed(children);
       return;
     }
-    setStage("out");
-    const t = setTimeout(() => {
-      setDisplayed(children);
-      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-      setStage("in");
-      prevPath.current = location.pathname;
-    }, 220);
-    return () => clearTimeout(t);
+
+    const timers: number[] = [];
+
+    // Phase 1: cover (panel sweeps up over content)
+    setPhase("cover");
+    setContentVisible(false);
+
+    // Phase 2: at the midpoint, swap route content + reset scroll
+    timers.push(
+      window.setTimeout(() => {
+        setDisplayed(children);
+        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+        prevPath.current = location.pathname;
+      }, 500)
+    );
+
+    // Phase 3: reveal (panel sweeps off the top)
+    timers.push(
+      window.setTimeout(() => {
+        setPhase("reveal");
+      }, 520)
+    );
+
+    // Phase 4: fade incoming content in slightly after reveal starts
+    timers.push(
+      window.setTimeout(() => {
+        setContentVisible(true);
+      }, 700)
+    );
+
+    // Reset
+    timers.push(
+      window.setTimeout(() => {
+        setPhase("idle");
+      }, 1100)
+    );
+
+    return () => timers.forEach((t) => clearTimeout(t));
   }, [location.pathname, children]);
 
   return (
-    <div
-      key={prevPath.current}
-      className={cn(
-        "transition-all duration-300 ease-out will-change-transform",
-        stage === "in"
-          ? "opacity-100 translate-y-0 blur-0"
-          : "opacity-0 translate-y-4 blur-[2px]"
-      )}
-    >
-      {displayed}
-    </div>
+    <>
+      <div
+        className={cn(
+          "transition-all duration-500 ease-out will-change-transform",
+          contentVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-3"
+        )}
+      >
+        {displayed}
+      </div>
+
+      {/* Sweeping overlay panel — Barba-style */}
+      <div className="fixed inset-0 z-[100] pointer-events-none overflow-hidden">
+        <div
+          className={cn(
+            "absolute inset-x-0 h-[110vh] bg-foreground",
+            "transition-transform duration-500",
+            phase === "cover"
+              ? // sweep IN from bottom: ease-out feel
+                "translate-y-0 ease-[cubic-bezier(0.7,0,0.3,1)]"
+              : phase === "reveal"
+              ? // sweep OUT to top
+                "-translate-y-full ease-[cubic-bezier(0.7,0,0.3,1)]"
+              : // idle: parked below the viewport, no transition
+                "translate-y-full duration-0"
+          )}
+        >
+          {/* subtle accent stripe, like Barba demos */}
+          <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+          <div
+            className={cn(
+              "absolute inset-0 flex items-center justify-center transition-opacity",
+              phase === "cover" ? "opacity-100 duration-300 delay-200" : "opacity-0 duration-150"
+            )}
+          >
+            <span className="font-display font-bold text-background/80 text-2xl tracking-widest">
+              IIC
+            </span>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
