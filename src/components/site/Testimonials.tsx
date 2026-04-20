@@ -20,13 +20,13 @@ const quotes = [
 
 export const Testimonials = () => {
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-16 md:py-20">
       <div className="container">
-        <div className="max-w-2xl mb-16">
-          <div className="text-sm font-medium text-primary uppercase tracking-widest mb-4">
+        <div className="max-w-2xl mb-10">
+          <div className="text-xs font-medium text-primary uppercase tracking-widest mb-3">
             Voices
           </div>
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
+          <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl leading-tight">
             What people <span className="text-gradient">say</span>.
           </h2>
         </div>

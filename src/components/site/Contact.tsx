@@ -33,16 +33,16 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-card/40">
-      <div className="container grid lg:grid-cols-2 gap-12">
+    <section id="contact" className="py-16 md:py-20 bg-card/40">
+      <div className="container grid lg:grid-cols-2 gap-10">
         <div>
-          <div className="text-sm font-medium text-primary uppercase tracking-widest mb-4">
+          <div className="text-xs font-medium text-primary uppercase tracking-widest mb-3">
             Get in Touch
           </div>
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+          <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl leading-tight mb-5">
             Let's build <span className="text-gradient">together</span>.
           </h2>
-          <p className="text-muted-foreground text-lg mb-10">
+          <p className="text-muted-foreground text-base md:text-lg mb-8">
             Got an idea, partnership proposal, or just want to say hi? Drop us a message.
           </p>
 
