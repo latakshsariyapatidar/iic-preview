@@ -92,8 +92,8 @@ export const Navbar = () => {
               "flex items-center justify-between gap-4 transition-smooth",
               "rounded-full border pl-4 pr-2 py-2",
               scrolled
-                ? "bg-background/75 backdrop-blur-xl border-border shadow-card"
-                : "bg-background/40 backdrop-blur-md border-border/60"
+                ? "bg-background/95 backdrop-blur-xl border-border shadow-card"
+                : "bg-background/90 backdrop-blur-xl border-border shadow-soft"
             )}
           >
             {/* Brand */}
