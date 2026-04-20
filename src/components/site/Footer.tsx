@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Linkedin, Instagram, Twitter, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,19 +53,19 @@ export const Footer = () => {
           <div className="md:col-span-2">
             <div className="font-display font-semibold mb-4">Explore</div>
             <ul className="space-y-2 text-sm text-background/70">
-              <li><a href="#about" className="hover:text-background transition-smooth">About</a></li>
-              <li><a href="#events" className="hover:text-background transition-smooth">Events</a></li>
-              <li><a href="#team" className="hover:text-background transition-smooth">Team</a></li>
-              <li><a href="#gallery" className="hover:text-background transition-smooth">Gallery</a></li>
+              <li><Link to="/about" className="hover:text-background transition-smooth">About</Link></li>
+              <li><Link to="/events" className="hover:text-background transition-smooth">Events</Link></li>
+              <li><Link to="/team" className="hover:text-background transition-smooth">Team</Link></li>
+              <li><Link to="/gallery" className="hover:text-background transition-smooth">Gallery</Link></li>
             </ul>
           </div>
 
           <div className="md:col-span-2">
             <div className="font-display font-semibold mb-4">Resources</div>
             <ul className="space-y-2 text-sm text-background/70">
-              <li><a href="#join" className="hover:text-background transition-smooth">Submit Idea</a></li>
-              <li><a href="#contact" className="hover:text-background transition-smooth">Contact</a></li>
-              <li><a href="#" className="hover:text-background transition-smooth">Mentorship</a></li>
+              <li><Link to="/startup" className="hover:text-background transition-smooth">Submit Idea</Link></li>
+              <li><Link to="/contact" className="hover:text-background transition-smooth">Contact</Link></li>
+              <li><Link to="/what-we-do" className="hover:text-background transition-smooth">Programs</Link></li>
               <li><a href="#" className="hover:text-background transition-smooth">Press</a></li>
             </ul>
           </div>
