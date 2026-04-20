@@ -14,11 +14,6 @@ export const Hero = () => {
 
       <div className="container relative z-10 grid lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-8 space-y-7 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-card border border-border text-xs font-medium">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            Institute Innovation Council · IIT Dharwad
-          </div>
-
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.02] tracking-tight">
             Igniting <span className="text-brand">Innovation</span>
             <br className="hidden md:block" /> at <span className="text-gradient">IIT Dharwad</span>

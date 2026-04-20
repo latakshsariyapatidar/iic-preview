@@ -48,28 +48,33 @@ export const Loader = ({ onDone }: LoaderProps) => {
   if (phase === "done") return null;
 
   return (
-    <div className="fixed inset-0 z-[200] pointer-events-none">
+    <div className="fixed inset-0 z-[200] pointer-events-none overflow-hidden">
       {/* Top shutter half */}
       <div
         className={cn(
-          "absolute inset-x-0 top-0 h-1/2 bg-background flex items-end justify-center transition-transform duration-[900ms] ease-[cubic-bezier(0.85,0,0.15,1)]",
+          "absolute inset-x-0 top-0 h-1/2 bg-background transition-transform duration-[900ms] ease-[cubic-bezier(0.85,0,0.15,1)] overflow-hidden",
           phase === "reveal" ? "-translate-y-full" : "translate-y-0"
         )}
-      >
-        <div className="translate-y-1/2">
-          <Logo animated progress={progress} className="w-32 h-32 md:w-40 md:h-40" />
-        </div>
-      </div>
+      />
       {/* Bottom shutter half */}
       <div
         className={cn(
-          "absolute inset-x-0 bottom-0 h-1/2 bg-background flex items-start justify-center transition-transform duration-[900ms] ease-[cubic-bezier(0.85,0,0.15,1)]",
+          "absolute inset-x-0 bottom-0 h-1/2 bg-background transition-transform duration-[900ms] ease-[cubic-bezier(0.85,0,0.15,1)] overflow-hidden",
           phase === "reveal" ? "translate-y-full" : "translate-y-0"
         )}
+      />
+
+      <div
+        className={cn(
+          "absolute inset-0 flex flex-col items-center justify-center transition-all duration-[900ms] ease-[cubic-bezier(0.85,0,0.15,1)]",
+          phase === "reveal" ? "-translate-y-[55vh] opacity-0" : "translate-y-0 opacity-100"
+        )}
       >
+        <Logo animated progress={progress} className="w-32 h-32 md:w-40 md:h-40 object-contain" />
+
         <div
           className={cn(
-            "-translate-y-1/2 mt-16 md:mt-20 text-center transition-opacity duration-300",
+            "mt-8 text-center transition-opacity duration-300",
             phase === "reveal" ? "opacity-0" : "opacity-100"
           )}
         >

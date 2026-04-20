@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Logo } from "@/components/site/Logo";
 import { Magnetic } from "@/components/site/Magnetic";
+import iicLogo from "./iic-logo.png";
 
 const links = [
   { to: "/about", label: "About" },
@@ -77,7 +77,7 @@ export const Navbar = () => {
             {/* Brand */}
             <Link to="/" className="flex items-center gap-2.5 font-display font-bold pl-1">
               <span className="w-9 h-9 rounded-full bg-background border border-border flex items-center justify-center overflow-hidden">
-                <Logo className="w-7 h-7" />
+                <img src={iicLogo} alt="IIC Logo" />
               </span>
               <span className="hidden sm:inline text-sm md:text-base">
                 IIC<span className="text-muted-foreground font-normal"> · IIT Dharwad</span>
