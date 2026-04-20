@@ -80,27 +80,23 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
       <div className="fixed inset-0 z-[100] pointer-events-none overflow-hidden">
         <div
           className={cn(
-            "absolute inset-x-0 h-[110vh] bg-foreground",
+            "absolute inset-x-0 h-[110vh] bg-card border-y border-border",
             "transition-transform duration-500",
             phase === "cover"
-              ? // sweep IN from bottom: ease-out feel
-                "translate-y-0 ease-[cubic-bezier(0.7,0,0.3,1)]"
+              ? "translate-y-0 ease-[cubic-bezier(0.7,0,0.3,1)]"
               : phase === "reveal"
-              ? // sweep OUT to top
-                "-translate-y-full ease-[cubic-bezier(0.7,0,0.3,1)]"
-              : // idle: parked below the viewport, no transition
-                "translate-y-full duration-0"
+              ? "-translate-y-full ease-[cubic-bezier(0.7,0,0.3,1)]"
+              : "translate-y-full duration-0"
           )}
         >
-          {/* subtle accent stripe, like Barba demos */}
-          <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+          <div className="absolute inset-x-0 bottom-0 h-0.5 bg-primary" />
           <div
             className={cn(
               "absolute inset-0 flex items-center justify-center transition-opacity",
               phase === "cover" ? "opacity-100 duration-300 delay-200" : "opacity-0 duration-150"
             )}
           >
-            <span className="font-display font-bold text-background/80 text-2xl tracking-widest">
+            <span className="font-display font-bold text-foreground text-2xl tracking-[0.4em]">
               IIC
             </span>
           </div>
