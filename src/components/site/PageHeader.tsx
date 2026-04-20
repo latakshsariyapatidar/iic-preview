@@ -9,24 +9,24 @@ interface PageHeaderProps {
 
 export const PageHeader = ({ eyebrow, title, description }: PageHeaderProps) => {
   return (
-    <section className="relative pt-36 pb-16 md:pt-44 md:pb-20 overflow-hidden bg-hero">
-      <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/20 to-background pointer-events-none" />
+    <section className="relative pt-28 pb-10 md:pt-32 md:pb-14 overflow-hidden bg-background border-b border-border">
+      <div className="absolute inset-0 grid-bg opacity-30 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
       <div className="container relative">
-        <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6 font-medium">
+        <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-5 font-medium">
           <Link to="/" className="hover:text-foreground transition-smooth">Home</Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <span className="text-foreground">{eyebrow ?? "Page"}</span>
         </nav>
         {eyebrow && (
-          <div className="text-sm font-medium text-primary uppercase tracking-widest mb-4">
+          <div className="text-xs font-medium text-primary uppercase tracking-widest mb-3">
             {eyebrow}
           </div>
         )}
-        <h1 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight max-w-4xl">
+        <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight max-w-4xl">
           {title}
         </h1>
         {description && (
-          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
             {description}
           </p>
         )}

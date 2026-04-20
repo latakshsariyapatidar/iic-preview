@@ -33,14 +33,14 @@ export const Events = () => {
   const list = filter === "All" ? events : events.filter((e) => e.category === filter);
 
   return (
-    <section id="events" className="py-24 md:py-32">
+    <section id="events" className="py-16 md:py-20">
       <div className="container">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
           <div className="max-w-2xl">
-            <div className="text-sm font-medium text-primary uppercase tracking-widest mb-4">
+            <div className="text-xs font-medium text-primary uppercase tracking-widest mb-3">
               Flagship Events
             </div>
-            <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl leading-tight">
               Events that <span className="text-gradient">define</span> the year.
             </h2>
           </div>
@@ -51,8 +51,8 @@ export const Events = () => {
                 onClick={() => setFilter(f)}
                 className={`px-4 py-2 rounded-full text-sm font-medium border transition-smooth ${
                   filter === f
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent border-border hover:bg-card"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-transparent border-border text-muted-foreground hover:bg-card hover:text-foreground"
                 }`}
               >
                 {f}
@@ -61,7 +61,7 @@ export const Events = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {list.map((e) => (
             <article
               key={e.title}
@@ -76,13 +76,13 @@ export const Events = () => {
                   height={768}
                   className="w-full h-full object-cover transition-smooth group-hover:scale-105"
                 />
-                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/90 backdrop-blur text-xs font-medium">
+                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-background/90 backdrop-blur text-xs font-medium border border-border">
                   {e.category}
                 </span>
               </div>
-              <div className="p-6">
-                <h3 className="font-display font-semibold text-2xl mb-2">{e.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{e.desc}</p>
+              <div className="p-5">
+                <h3 className="font-display font-semibold text-xl mb-2">{e.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">{e.desc}</p>
                 <Button variant="ghost" size="sm" className="px-0 hover:bg-transparent group/btn">
                   Learn More
                   <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />

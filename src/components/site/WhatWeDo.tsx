@@ -25,30 +25,30 @@ const items = [
 
 export const WhatWeDo = () => {
   return (
-    <section id="what-we-do" className="py-24 md:py-32 bg-card/40">
+    <section id="what-we-do" className="py-16 md:py-20 bg-card/40">
       <div className="container">
-        <div className="max-w-2xl mb-16">
-          <div className="text-sm font-medium text-primary uppercase tracking-widest mb-4">
+        <div className="max-w-2xl mb-10">
+          <div className="text-xs font-medium text-primary uppercase tracking-widest mb-3">
             What We Do
           </div>
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
+          <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl leading-tight">
             Programs built for <span className="text-gradient">builders</span>.
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {items.map((it, i) => (
             <div
               key={it.title}
-              className="group relative rounded-3xl border border-border bg-background p-7 hover-lift overflow-hidden"
+              className="group relative rounded-3xl border border-border bg-background p-6 hover-lift overflow-hidden"
               style={{ animationDelay: `${i * 80}ms` }}
             >
-              <div className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-gradient-to-br from-primary/15 to-accent/10 blur-2xl opacity-0 group-hover:opacity-100 transition-smooth" />
+              <span className="absolute inset-x-0 bottom-0 h-0 bg-primary/10 group-hover:h-full transition-all duration-500 ease-out -z-0" />
               <div className="relative">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent text-primary-foreground flex items-center justify-center mb-5">
-                  <it.icon className="w-6 h-6" />
+                <div className="w-11 h-11 rounded-xl bg-primary text-primary-foreground flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-[-6deg] group-hover:scale-110">
+                  <it.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-display font-semibold text-xl mb-2">{it.title}</h3>
+                <h3 className="font-display font-semibold text-lg mb-2">{it.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{it.desc}</p>
               </div>
             </div>
