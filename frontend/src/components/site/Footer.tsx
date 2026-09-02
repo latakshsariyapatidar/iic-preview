@@ -1,27 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Linkedin, Instagram, Twitter, Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { z } from "zod";
-
-const emailSchema = z.string().trim().email().max(255);
+import { Linkedin, Instagram } from "lucide-react";
 
 export const Footer = () => {
-  const [email, setEmail] = useState("");
-
-  const subscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    const parsed = emailSchema.safeParse(email);
-    if (!parsed.success) {
-      toast.error("Please enter a valid email");
-      return;
-    }
-    toast.success("Subscribed! Look out for our next newsletter.");
-    setEmail("");
-  };
-
   return (
     <footer className="bg-card border-t border-border text-foreground">
       <div className="container py-12 md:py-16">
@@ -33,21 +13,10 @@ export const Footer = () => {
               </span>
               IIC IIT Dharwad
             </div>
-            <p className="text-muted-foreground max-w-md mb-5">
+            <p className="text-muted-foreground max-w-md">
               The Institute Innovation Council — building India's next generation of founders,
               one student at a time.
             </p>
-            <form onSubmit={subscribe} className="flex gap-2 max-w-md">
-              <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Subscribe to newsletter"
-                maxLength={255}
-                className="bg-background border-border"
-              />
-              <Button type="submit" variant="default">Subscribe</Button>
-            </form>
           </div>
 
           <div className="md:col-span-2">
@@ -63,7 +32,6 @@ export const Footer = () => {
           <div className="md:col-span-2">
             <div className="font-display font-semibold mb-3">Resources</div>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/startup" className="hover:text-foreground transition-smooth">Submit Idea</Link></li>
               <li><Link to="/contact" className="hover:text-foreground transition-smooth">Contact</Link></li>
               <li><Link to="/what-we-do" className="hover:text-foreground transition-smooth">Programs</Link></li>
               <li><a href="#" className="hover:text-foreground transition-smooth">Press</a></li>
@@ -73,14 +41,14 @@ export const Footer = () => {
           <div className="md:col-span-3">
             <div className="font-display font-semibold mb-3">Connect</div>
             <div className="flex gap-3">
-              {[Linkedin, Instagram, Twitter, Github].map((Icon, i) => (
+              {[{Icon: Linkedin,href:"https://www.linkedin.com/company/institute-innovation-council/posts/"}, {Icon:Instagram, href: "https://www.instagram.com/iic_iitdh/"}].map((Item, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={Item.href}
                   aria-label="social"
                   className="w-10 h-10 rounded-xl bg-background border border-border flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-smooth"
                 >
-                  <Icon className="w-4 h-4" />
+                  <Item.Icon className="w-4 h-4" />
                 </a>
               ))}
             </div>

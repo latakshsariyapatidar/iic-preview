@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Mail, MapPin, Send, Linkedin, Instagram, Twitter } from "lucide-react";
+import { Mail, MapPin, Send, Linkedin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { z } from "zod";
+import { API_BASE } from "@/lib/api";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -17,7 +18,7 @@ export const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(form);
     if (!parsed.success) {
@@ -25,11 +26,23 @@ export const Contact = () => {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
+    
+    try {
+      const res = await fetch(`${API_BASE}/enquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form)
+      });
+      
+      if (!res.ok) throw new Error("Failed to send message");
+      
       toast.success("Message sent! We'll get back within 48 hours.");
       setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
       setLoading(false);
-    }, 700);
+    }
   };
 
   return (
@@ -66,14 +79,17 @@ export const Contact = () => {
               </div>
             </div>
             <div className="flex gap-3 pt-2">
-              {[Linkedin, Instagram, Twitter].map((Icon, i) => (
+              {[
+                {Icon: Linkedin, href:"https://www.linkedin.com/company/institute-innovation-council/posts/"}, 
+                {Icon: Instagram, href: "https://www.instagram.com/iic_iitdh/"}
+              ].map((Item, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={Item.href}
                   aria-label="social"
                   className="w-11 h-11 rounded-xl bg-background border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-smooth"
                 >
-                  <Icon className="w-5 h-5" />
+                  <Item.Icon className="w-5 h-5" />
                 </a>
               ))}
             </div>

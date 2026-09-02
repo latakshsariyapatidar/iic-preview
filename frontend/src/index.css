@@ -106,7 +106,7 @@
   }
 
   .hover-lift {
-    @apply transition-smooth hover:-translate-y-1 hover:shadow-card;
+    @apply transition-smooth hover:shadow-card;
   }
 
   .grid-bg {

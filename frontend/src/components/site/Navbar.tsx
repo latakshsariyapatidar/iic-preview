@@ -131,12 +131,12 @@ export const Navbar = () => {
             {/* CTA + mobile trigger */}
             <div className="flex items-center gap-2">
               <Link
-                to="/startup"
+                to="https://iic.iitdh.ac.in/esummit/"
                 className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground pl-4 pr-3 py-2 text-sm font-semibold hover:bg-primary/90 transition-smooth group"
               >
                 <Magnetic strength={0.3}>
                   <span className="inline-flex items-center gap-1.5">
-                    Join IIC
+                    Esummit - 26
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
                 </Magnetic>
@@ -221,7 +221,7 @@ export const Navbar = () => {
               onClick={() => setOpen(false)}
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground py-4 text-base font-semibold hover:bg-primary/90 transition-smooth"
             >
-              Join IIC
+              Esummit - 26
               <ArrowUpRight className="w-5 h-5" />
             </Link>
             <p className="mt-5 text-xs text-muted-foreground text-center">

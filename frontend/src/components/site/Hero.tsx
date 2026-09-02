@@ -12,8 +12,8 @@ export const Hero = () => {
       {/* subtle grid background instead of gradients */}
       <div className="absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
 
-      <div className="container relative z-10 grid lg:grid-cols-12 gap-10 items-center">
-        <div className="lg:col-span-8 space-y-7 animate-fade-in-up">
+      <div className="container relative z-10">
+        <div className="max-w-3xl space-y-7 animate-fade-in-up">
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.02] tracking-tight">
             Igniting <span className="text-brand">Innovation</span>
             <br className="hidden md:block" /> at <span className="text-gradient">IIT Dharwad</span>
@@ -37,26 +37,10 @@ export const Hero = () => {
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full">
               <Link to="/startup">
-                <Magnetic strength={0.3}>Join IIC</Magnetic>
+                <Magnetic strength={0.3}>Esummit - 26</Magnetic>
               </Link>
             </Button>
           </div>
-        </div>
-
-        <div className="lg:col-span-4 hidden lg:flex flex-col gap-3 animate-slide-in-right">
-          {[
-            { k: "50+", v: "Events Hosted" },
-            { k: "20+", v: "Startups Supported" },
-            { k: "2K+", v: "Students Impacted" },
-          ].map((s) => (
-            <div
-              key={s.v}
-              className="rounded-2xl bg-card border border-border p-5 hover-lift"
-            >
-              <div className="text-3xl font-display font-bold text-brand">{s.k}</div>
-              <div className="text-sm text-muted-foreground mt-1">{s.v}</div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
