@@ -21,7 +21,7 @@ services:
     container_name: iic_frontend
     restart: always
     ports:
-      - "80:80"
+      - "6901:80"
     depends_on:
       - backend
 
