@@ -36,7 +36,7 @@ export const Hero = () => {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full">
-              <Link to="/startup">
+              <Link to="https://iic.iitdh.ac.in/esummit/" target="_blank" rel="noopener noreferrer">
                 <Magnetic strength={0.3}>Esummit - 26</Magnetic>
               </Link>
             </Button>

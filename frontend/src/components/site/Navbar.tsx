@@ -132,6 +132,7 @@ export const Navbar = () => {
             <div className="flex items-center gap-2">
               <Link
                 to="https://iic.iitdh.ac.in/esummit/"
+                target="_blank" rel="noopener noreferrer"
                 className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground pl-4 pr-3 py-2 text-sm font-semibold hover:bg-primary/90 transition-smooth group"
               >
                 <Magnetic strength={0.3}>
@@ -217,7 +218,8 @@ export const Navbar = () => {
             style={{ transitionDelay: open ? `${200 + links.length * 60}ms` : "0ms" }}
           >
             <Link
-              to="/startup"
+              to="https://iic.iitdh.ac.in/esummit/"
+              target="_blank" rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground py-4 text-base font-semibold hover:bg-primary/90 transition-smooth"
             >
