@@ -8,10 +8,10 @@ services:
     container_name: iic_backend
     restart: always
     environment:
-      - DATABASE_URL=file:./dev.db
+      - DATABASE_URL=file:/data/dev.db
       - JWT_SECRET=production_secret_key_change_me
     volumes:
-      - sqlite_data:/app/dev.db
+      - sqlite_data:/data
       - uploads_data:/app/public/uploads
 
   frontend:
